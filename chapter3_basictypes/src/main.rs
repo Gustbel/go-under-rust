@@ -70,7 +70,69 @@ fn main() {
 	let t_2 = string.split_at(11);	// Esta función divide en la posición indicada
 	println!("\tOriginal: '{}'\t\tTuple-> Element1:'{}'\tElement2:'{}'", string, t_2.0, t_2.1);
 
+//Pointer Types
+println!("\nPointer Types:");
+  // References:
+	// Declaration
+	let str_1 = "Esto es un string literal";
+	println!("  References:\n\tValor de str_1 = '{}' -- y la referencia de esta variable es &str_1", str_1);
+  // Boxes:
+	// Declaration
+	let t = (12, "eggs");
+	let boxes_1 = Box::new(t); // El tipo es Box<(i32, &str)>
+	println!("  Boxes:\n\tBoxes es la forma más simple de guardar valores en heap. Por ejemplo la boxes_1 recien creada es una tupla y está en el heap: Box<({}:i32,{}:&str)>", boxes_1.0, boxes_1.1);
+  // Raw Pointes:
+	// Declaration
+	println!("  Raw Pointers:\n\tExactamente iguales a los punteros de C/C++, no los explicaremos en este código");
 
+//Arrays
+println!("\nArrays:");
+	// Declaration 
+	let mut chaos : [u32;6] = [2,14,1,29,3,5];
+	let taxonomy = ["Animalia", "Arthropoda","Insecta"];
+	let sieve = [true;1000]; // Crea un Array de 1000 elementos bool ya inicializados en true.. esto puede hacerse con cualquier tipo
+	println!("\t- De tamaño FIJO, son siempre del mismo tipo y se guardan en el Stack (no en heap)\n\
+			\t   Valor de arrays: chaos = {:?}, taxonomy = {:?}, cant de element de sieve: {}", chaos, taxonomy, sieve.len());
 
+	//Methods
+	chaos.sort();
+	println!("\tchaos.sort() = {:?}  // Metodo que ordena un array", chaos);
+
+//Vector
+	println!("\nVector:");
+	println!("\t- De tamaño VARIABLE, son siempre del mismo tipo y se guardan en heap, lo que obtenemos en la variable es un puntero al dato en heap\n");
+	// Declaration 
+		let mut v = vec![2,3,5,7];
+		println!("\tv = {:?}  -> (Vect<i32>)", v);
+		v.push(11);
+		v.push(24);
+		//v.push("Hola"); Da error porque está esperando un Integer
+		println!("\tv.push(11);\n\tv.push(24);\n\tv = {:?}  -> (Vect<i32>)", v);
+		v.pop();
+		println!("\tv.pop();\n\tv = {:?}  -> (Vect<i32>)", v);
+
+		// Otra forma de definir Vectors pero acá no sabe la cantidad de elemenos iniciales
+		let mut v_2 = Vec::new();
+		v_2.push("dato1"); v_2.push("dato2");
+		// Si sabemos la cantidad máxima aproximada de elementos del Vector es mejor definir de esta forma:
+		let mut v_3 = Vec::with_capacity(2);
+		v_3.push("dato1"); v_3.push("dato2");
+
+	//Methods
+		v.insert(3,100);
+		println!("\tv.insert(3,100);\n\tv = {:?}  -> (Vect<i32>)", v);
+		v.remove(0);
+		println!("\tv.remove(0));\n\tv = {:?}  -> (Vect<i32>)", v);
+	
+	// in a for block
+	println!("\n\tCiclo FOR de v");
+		for i in v {
+			println!("\t\tElemento impreso en for: {}", i);
+		}
+	
+//Slice
+	println!("\nSlice:");
+	println!("\t- Los Slices siempre guardan Referencias (no owning) de un array o un Vector\n\
+			\tEn el ejemplo anterior del vector v, un slice de v sería:\n\t\tlet sv:&[i32] = &v;");
 }
 
