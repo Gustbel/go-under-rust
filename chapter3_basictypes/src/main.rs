@@ -134,5 +134,26 @@ println!("\nArrays:");
 	println!("\nSlice:");
 	println!("\t- Los Slices siempre guardan Referencias (no owning) de un array o un Vector\n\
 			\tEn el ejemplo anterior del vector v, un slice de v sería:\n\t\tlet sv:&[i32] = &v;");
+
+
+
+// String Types
+	// Declaration
+	// String Literal   -> Son inmutables y de tamaño fijo
+	let string_1 = "Este es un String Literal";
+	let string_2 = r"Este es un RAW String Literal"; //Esta forma de declaracion no permite escapes \ en la declaración, \ será reconocido como un caracter más
+	let string_3 = b"GET"; //Este es un string byte, cada carácter es ASCII y ocupa 8bits y ES UN ARREGLO
+	
+	// Strings		-> Son análogos a un Vector y pueden agrandarse o achicarse tiene su propio buffer en heap
+	let string_4 = "Este es un String Vector".to_string();
+
+	println!("\nString Types:\n\tstr1:'{}'\tstr2:'{}'\tstr3:'{:?} (String Byte)'\tstr4:'{:?}'", string_1, string_2, string_3, string_4);
+
+	// Methods   --> NO pueden usarse en los strings literales, solo en los Strings vectores
+	let string_5 = "ONE".to_string();
+	println!("\t\"ONE\".to_lowercase() = {}", string_5.to_lowercase());
+
+
+
 }
 
